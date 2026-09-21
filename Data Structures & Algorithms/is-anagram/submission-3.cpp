@@ -1,15 +1,29 @@
 class Solution {
 public:
-    bool hasDuplicate(vector<int>& nums) {
-       unordered_map<int, int> seen;
-
-       for(int i = 0; i < nums.size(); i++){
-        if(seen.find(nums[i]) != seen.end()){
-            return true;
+    bool isAnagram(string s, string t) {
+        if(s.size() != t.size()){
+            return false;
         }
-        seen[nums[i]] = i;
-       }
 
-       return false;
+        unordered_map<char, int> seen;
+
+        
+
+
+        for(char str : s){
+            seen[str]++;
+        }
+
+        for(char str : t){
+            seen[str]--;
+        }
+
+        for(auto [ch, i]: seen){
+            if(i != 0){
+                return false;
+            }
+        }
+
+        return true;
     }
 };
